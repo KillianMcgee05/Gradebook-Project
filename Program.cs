@@ -1,13 +1,19 @@
-﻿using System;
+﻿namespace Gradebook_Project;
+
+ using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 class GradeBook
 {
+    public int studentcount;
     static void Main(string[] args)
     {
         Dictionary<string, List<int>> gradeBook = new Dictionary<string, List<int>>();
         bool running = true;
-
+// Main menu
         while (running)
         {
             Console.WriteLine("/n--- Gradebook Menu ---");
@@ -38,16 +44,6 @@ class GradeBook
         }
     }
 
-    private static void ViewGradebook(Dictionary<string, List<int>> gradeBook)
-    {
-        throw new NotImplementedException();
-    }
-
-    private static void CalculateAverage(Dictionary<string, List<int>> gradeBook)
-    {
-        throw new NotImplementedException();
-    }
-
     static void AddStudent(Dictionary<string, List<int>> gradeBook)
     {
         Console.Write("Please enter the student's name: ");
@@ -56,6 +52,7 @@ class GradeBook
         if (!gradeBook.ContainsKey(name))
         {
             gradeBook[name] = new List<int>();
+            //int adds a count of students, so if its zero when the gradebook is viewed it says "No students here"
         }
 
         Console.Write("Please enter grades separated by commas (e.g., 81, 98, 88): ");
@@ -67,7 +64,6 @@ class GradeBook
 
                 gradeBook[name].Add(gradeValue);
 
-
             else
             {
                 Console.WriteLine($"Invalid grade '{grade}'. Skipping...");
@@ -77,14 +73,22 @@ class GradeBook
 
         Console.WriteLine($"Grades added for {name}.");
 
-
+    }
 
         static void ViewGradebook(Dictionary<string, List<int>> gradeBook)
         {
-            Console.WriteLine("/n--- Gradebook ---");
+        Console.WriteLine("/n--- Gradebook ---");
+             Console.WriteLine("--Viewing Gradebook...--");
             foreach (var student in gradeBook)
             {
+                
                 Console.WriteLine($"Student: {student.Key}, Grades: {string.Join(", ", student.Value)}");
+
+            }
+           
+            
+            {
+                Console.WriteLine("No students here");
             }
         }
 
@@ -105,10 +109,5 @@ class GradeBook
             }
         }
     }
-}
-
-
-
-
 
 
